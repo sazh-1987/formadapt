@@ -1,74 +1,68 @@
-/* ===========================================================
-   FORM'ADAPT — Thème "Bien-être & Modernité"
-   Palette : vert sauge + bleu pétrole
-   Police : Nunito
-   Pas de max-width global (seulement min-width 320px)
-   =========================================================== */
-
-/* ---------- Variables ---------- */
+/* ============ FORM'ADAPT — Thème Bien-être & Modernité ============ */
 :root{
-  --bg: #FAFAF8;           /* fond global clair */
-  --surface: #ffffff;       /* cartes / header */
-  --text: #2b2f33;          /* texte principal */
-  --muted: #6b7280;         /* texte secondaire */
-
-  --primary: #6DAA7D;       /* vert sauge : boutons/menu */
-  --primary-600:#5a8f69;    /* hover */
-  --accent: #34495E;        /* bleu pétrole : titres/accents */
-  --accent-600:#2b3d4f;     /* hover */
-  --hero-start:#F7FAF8;     /* dégradé hero */
-  --hero-end:#EFF6F1;
-
-  --radius: 12px;
-  --shadow: 0 10px 25px rgba(0,0,0,.08);
+  --bg:#fafaf8;
+  --surface:#ffffff;
+  --text:#2b2f33;
+  --muted:#6b7280;
+  --primary:#6daa7d;
+  --primary-600:#5a8f69;
+  --accent:#34495e;
+  --accent-600:#2b3d4f;
+  --hero-start:#f7faf8;
+  --hero-end:#eff6f1;
+  --radius:12px;
+  --shadow:0 10px 25px rgba(0,0,0,.08);
 }
 
-/* ---------- Reset & base ---------- */
+/* ============ Base ============ */
 *,
 *::before,
 *::after{ box-sizing:border-box }
-
 html{ scroll-behavior:smooth }
-
 body{
   margin:0;
-  min-width:320px;                 /* pas de max-width */
+  min-width:320px;
   background:var(--bg);
   color:var(--text);
-  font-family:'Nunito', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  font-family:'Nunito',system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
   line-height:1.55;
 }
-
 img{ max-width:100%; height:auto; display:block }
 a{ color:var(--accent); text-decoration:none }
 a:hover{ text-decoration:underline }
 h1,h2,h3{ margin:0 0 .6rem; color:var(--accent) }
+.container{ width:min(1120px,92%); margin:0 auto }
 
-.container{ width:min(1120px, 92%); margin:0 auto }
-
-/* ---------- Header / Nav ---------- */
+/* ============ Header & Nav ============ */
 header{
   position:sticky; top:0; z-index:50;
   background:var(--surface);
   box-shadow:0 2px 12px rgba(0,0,0,.06);
 }
 .nav{
-  display:flex; align-items:center; justify-content:space-between;
-  padding:.8rem 0;
+  display:flex; align-items:center; gap:1rem;
+  justify-content:space-between; padding:.8rem 0;
 }
-.brand{ display:flex; align-items:center; gap:.75rem }
-.brand img{ height:52px }
-.brand-name{ color:var(--accent) }
+.brand{ display:flex; align-items:center; gap:.75rem; order:0 }
+.brand img{ height:78px; width:auto }
+.brand-name{ color:var(--accent); font-weight:800 }
 
-/* Menu uniformisé (4 boutons) */
-.menu{ display:flex; gap:.6rem; flex-wrap:wrap; align-items:center }
+/* Ordre visuel: brand (gauche) • nav (centre/droite) • burger (droite) */
+nav{ order:1; flex:1; display:flex; justify-content:flex-end }
+#menu-toggle{ display:none }
+.burger{
+  order:2; margin-left:1rem;
+  display:none; cursor:pointer; user-select:none;
+  padding:.35rem .6rem; border-radius:10px;
+  border:1px solid #e5e7eb; color:var(--accent);
+}
+
+/* Liens menu uniformes */
+.menu{ display:flex; gap:.6rem; align-items:center; flex-wrap:wrap }
 .menu a{
-  color:#fff;
-  background:var(--primary);
-  padding:.56rem 1rem;
-  border-radius:999px;             /* style pill */
-  font-weight:700; line-height:1;
-  display:inline-block;
+  color:#fff; background:var(--primary);
+  padding:.56rem 1rem; border-radius:999px;
+  font-weight:700; line-height:1; display:inline-block;
   border:1px solid transparent;
   transition:background .2s ease, transform .02s ease;
 }
@@ -77,19 +71,10 @@ header{
 .menu a.cta{ background:var(--accent) }
 .menu a.cta:hover{ background:var(--accent-600) }
 
-/* Burger (mobile) */
-#menu-toggle{ display:none }
-.burger{
-  display:none; cursor:pointer; user-select:none;
-  padding:.35rem .6rem; border-radius:10px;
-  border:1px solid #e5e7eb; color:var(--accent);
-}
-
-/* ---------- Hero ---------- */
+/* ============ Hero ============ */
 .hero{
-  background:linear-gradient(160deg, var(--hero-start) 0%, var(--hero-end) 100%);
-  padding:3.2rem 0;
-  border-bottom:1px solid #edf0f2;
+  background:linear-gradient(160deg,var(--hero-start) 0%,var(--hero-end) 100%);
+  padding:3.2rem 0; border-bottom:1px solid #edf0f2;
 }
 .hero .wrap{
   display:grid; grid-template-columns:1fr 1fr;
@@ -101,7 +86,6 @@ header{
   padding:.35rem .6rem; border-radius:999px; font-weight:700; font-size:.9rem;
 }
 .lead{ color:var(--muted) }
-
 .actions{ display:flex; gap:.8rem; flex-wrap:wrap }
 .btn{
   display:inline-flex; align-items:center; gap:.5rem;
@@ -111,75 +95,56 @@ header{
 }
 .btn.primary{ background:var(--primary); color:#fff }
 .btn.primary:hover{ background:var(--primary-600) }
-.btn:focus-visible, .menu a:focus-visible{
-  outline:3px solid rgba(109,170,125,.35);
-  outline-offset:2px;
+.btn:focus-visible,.menu a:focus-visible{
+  outline:3px solid rgba(109,170,125,.35); outline-offset:2px;
 }
 
-/* ---------- Sections, grilles et cartes ---------- */
+/* ============ Sections ============ */
 section{ padding:3.2rem 0 }
 .grid-3{ display:grid; grid-template-columns:repeat(3,1fr); gap:1.25rem }
 .grid-2{ display:grid; grid-template-columns:repeat(2,1fr); gap:1.25rem }
-
 .card{
   background:var(--surface); border:1px solid #eaecef;
   border-radius:var(--radius); padding:1.1rem; box-shadow:var(--shadow);
 }
-
 ul{ padding-left:1.1rem; margin:.4rem 0 0 }
 ul li{ margin:.35rem 0 }
 
-/* ---------- Formulaire ---------- */
-form {
-  display: grid;
-  gap: .8rem;
-  width: 50%;               /* moitié de la largeur écran */
+/* ============ Formulaire ============ */
+form{
+  display:grid; gap:.8rem; width:50%;
 }
-
 form input,
 form textarea,
-form button {
-  width: 100%;               /* chaque champ prend toute la largeur dispo */
-  padding: .85rem;
-  border: 1px solid #e5e7eb;
-  border-radius: 10px;
-  background: #fff;
+form button{
+  width:100%;
+  padding:.85rem; border:1px solid #e5e7eb; border-radius:10px; background:#fff;
+}
+form textarea{
+  height:135px; resize:vertical;
 }
 
-form textarea {
-  height: 135px;   /* environ 3x la hauteur d’un input */
-  resize: vertical; /* permet à l’utilisateur d’agrandir si besoin */
-}
-
-/* Responsive : sur mobile/tablette, le formulaire prend 100% */
-@media (max-width: 72px) {
-  form {
-    width: 100%;
-  }
-}
-
-
-/* ---------- Footer ---------- */
+/* ============ Footer ============ */
 footer{
   background:var(--accent); color:#eef2f5;
   text-align:center; padding:1.1rem 0;
 }
 footer a{ color:#eef2f5; text-decoration:underline }
 
-/* ---------- Responsive ---------- */
-@media (max-width: 980px){
+/* ============ Responsive ============ */
+@media (max-width:1024px){
+  .burger{ display:block }
+  nav .menu{ display:none }
+  #menu-toggle:checked ~ nav .menu{          /* fonctionne car input est avant nav */
+    display:grid; position:fixed; inset:64px 0 auto 0;
+    background:var(--surface); padding:1rem; gap:.75rem;
+    border-bottom:1px solid #edf0f2; box-shadow:0 6px 16px rgba(0,0,0,.06);
+  }
+  nav .menu a{ width:100%; text-align:center }
   .hero .wrap{ grid-template-columns:1fr }
   .grid-3{ grid-template-columns:1fr 1fr }
 }
-
-@media (max-width: 720px){
-  .grid-3, .grid-2{ grid-template-columns:1fr }
-  .burger{ display:block }
-  .menu{
-    position:fixed; inset:64px 0 auto 0; background:var(--surface);
-    padding:1rem; display:none; gap:.75rem; border-bottom:1px solid #edf0f2;
-    box-shadow:0 6px 16px rgba(0,0,0,.06);
-  }
-  #menu-toggle:checked ~ nav .menu{ display:grid }
-  .menu a{ width:100%; text-align:center }
+@media (max-width:720px){
+  .grid-3,.grid-2{ grid-template-columns:1fr }
+  form{ width:100% }
 }
