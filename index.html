@@ -22,6 +22,9 @@
   <meta name="twitter:description" content="Formations sécurité, santé & bien-être, sport & performance.">
   <meta name="twitter:image" content="1000026895.jpg">
 
+  <!-- Police douce -->
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="style.css">
   <link rel="icon" type="image/png" href="1000026895.jpg">
 </head>
@@ -31,8 +34,14 @@
     <div class="container nav">
       <div class="brand">
         <img id="logo" src="1000026895.jpg" alt="Logo Form'Adapt" width="52" height="52">
+        <strong class="brand-name">Form'Adapt</strong>
       </div>
-      <nav>
+
+      <!-- Burger mobile -->
+      <input type="checkbox" id="menu-toggle" aria-label="Ouvrir le menu">
+      <label for="menu-toggle" class="burger" aria-hidden="true">☰</label>
+
+      <nav aria-label="Navigation principale">
         <div class="menu">
           <a href="#accueil">Accueil</a>
           <a href="#formations">Nos formations</a>
@@ -48,7 +57,7 @@
     <div class="container wrap">
       <div>
         <span class="badge">Sécurité • Prévention • Bien-être</span>
-        <h1>Form'Adapt – Sécurité, Prévention & Bien-être</h1>
+        <h1>Form'Adapt – Sécurité, Prévention & Bien-être au service de vos équipes</h1>
         <p class="lead">Transformez les défis en atouts pour vos collaborateurs grâce à une approche humaine et adaptée.</p>
         <div class="actions">
           <a class="btn primary" href="#contact">Demander un devis</a>
@@ -59,14 +68,14 @@
   </main>
 
   <!-- Formations -->
-  <section id="formations">
+  <section id="formations" aria-labelledby="services-title">
     <div class="container">
-      <h2>Nos formations sur mesure</h2>
+      <h2 id="services-title">Nos formations sur mesure</h2>
       <div class="grid-3">
         <article class="card">
           <h3>🔥 Sécurité & Prévention</h3>
           <ul>
-            <li>Formation EPI/EPC</li>
+            <li>Formation EPI / EPC</li>
             <li>Manipulation d’extincteurs</li>
             <li>Évacuation & exercices</li>
             <li>SST & Recyclage</li>
@@ -96,19 +105,19 @@
   </section>
 
   <!-- À propos -->
-  <section id="apropos">
+  <section id="apropos" aria-labelledby="about-title">
     <div class="container grid-2">
       <div>
-        <h2>Qui est Form'Adapt ?</h2>
-        <p>Form'Adapt est né d'une conviction : l'expertise humaine est la clé du succès. Mon parcours unique alliant sécurité, sport et bien-être m’a permis de développer une approche globale.</p>
+        <h2 id="about-title">Qui est Form'Adapt ?</h2>
+        <p>Form'Adapt est né d'une conviction : l'expertise humaine est la clé du succès. Mon parcours unique alliant sécurité, sport et bien-être m’a permis de développer une approche globale et cohérente au service des équipes.</p>
       </div>
     </div>
   </section>
 
   <!-- Contact -->
-  <section id="contact">
+  <section id="contact" aria-labelledby="contact-title">
     <div class="container">
-      <h2>Contactez-nous</h2>
+      <h2 id="contact-title">Contactez-nous</h2>
       <form>
         <input type="text" name="nom" placeholder="Nom" required>
         <input type="text" name="prenom" placeholder="Prénom" required>
@@ -129,7 +138,7 @@
   </footer>
 
   <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
+    document.getElementById('year').textContent = new Date().getFullYear()
   </script>
 </body>
 </html>
