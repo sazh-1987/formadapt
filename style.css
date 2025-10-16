@@ -1,17 +1,22 @@
-/* ============ FORM'ADAPT — Thème Bien-être & Modernité ============ */
+/* ============ FORM'ADAPT — Thème Coloré Bien-être & Sécurité ============ */
 :root{
-  --bg:#fafaf8;
+  /* Palette issue du logo */
+  --green:#2ea36b;        /* vert feuille (primaire) */
+  --green-600:#238357;
+  --orange:#f59e0b;       /* orange énergie (CTA) */
+  --orange-700:#d97706;
+  --red:#e5532d;          /* rouge flamme pour accents rares */
+  --navy:#1f3a5f;         /* bleu pétrole pour textes forts */
+  --bg:#fbf9f6;           /* fond doux */
   --surface:#ffffff;
-  --text:#2b2f33;
+  --text:#233240;
   --muted:#6b7280;
-  --primary:#6daa7d;
-  --primary-600:#5a8f69;
-  --accent:#34495e;
-  --accent-600:#2b3d4f;
-  --hero-start:#f7faf8;
-  --hero-end:#eff6f1;
-  --radius:12px;
-  --shadow:0 10px 25px rgba(0,0,0,.08);
+
+  --hero-a:#ffe9d1;       /* dégradé hero : orange -> vert */
+  --hero-b:#e7f7ed;
+
+  --radius:14px;
+  --shadow:0 10px 24px rgba(0,0,0,.08);
 }
 
 /* ============ Base ============ */
@@ -19,18 +24,26 @@
 *::before,
 *::after{ box-sizing:border-box }
 html{ scroll-behavior:smooth }
-body{
-  margin:0;
-  min-width:320px;
-  background:var(--bg);
-  color:var(--text);
-  font-family:'Nunito',system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-  line-height:1.55;
+html,body{ min-width:320px }
+body {
+  margin: 0;
+  min-width: 320px;
+  background: var(--bg) url("logo_transparent.webp") no-repeat center center fixed;
+  background-size: contain;    /* garde proportions */
+  background-attachment: fixed;
 }
-img{ max-width:100%; height:auto; display:block }
-a{ color:var(--accent); text-decoration:none }
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.9); /* filtre blanc 20% -> logo perçu à 80% */
+  z-index: -1; /* reste derrière le contenu */
+}
+img{ display:block; max-width:100%; height:auto }
+a{ color:var(--navy); text-decoration:none }
 a:hover{ text-decoration:underline }
-h1,h2,h3{ margin:0 0 .6rem; color:var(--accent) }
+h1,h2,h3{ margin:0 0 .65rem; color:var(--navy) }
 .container{ width:min(1120px,92%); margin:0 auto }
 
 /* ============ Header & Nav ============ */
@@ -38,107 +51,115 @@ header{
   position:sticky; top:0; z-index:50;
   background:var(--surface);
   box-shadow:0 2px 12px rgba(0,0,0,.06);
+  margin: 0;
+  padding: 0.5rem 0;
 }
 .nav{
   display:flex; align-items:center; gap:1rem;
-  justify-content:space-between; padding:.8rem 0;
+  justify-content:space-between; padding: 0 1rem;
 }
 .brand{ display:flex; align-items:center; gap:.75rem; order:0 }
-.brand img{ height:78px; width:auto }
-.brand-name{ color:var(--accent); font-weight:800 }
+.brand img{ margin: 0; display:block; height:104px; width:auto }            /* logo x1.5 sans déformation */
+.brand-name{ color:var(--navy); font-weight:800; font-size:38px }
 
-/* Ordre visuel: brand (gauche) • nav (centre/droite) • burger (droite) */
 nav{ order:1; flex:1; display:flex; justify-content:flex-end }
 #menu-toggle{ display:none }
 .burger{
   order:2; margin-left:1rem;
   display:none; cursor:pointer; user-select:none;
-  padding:.35rem .6rem; border-radius:10px;
-  border:1px solid #e5e7eb; color:var(--accent);
+  padding:.4rem .7rem; border-radius:12px;
+  border:1px solid #e5e7eb; color:var(--navy);
+  background:#fff;
 }
 
-/* Liens menu uniformes */
+/* Liens du menu (boutons uniformes) */
 .menu{ display:flex; gap:.6rem; align-items:center; flex-wrap:wrap }
 .menu a{
-  color:#fff; background:var(--primary);
-  padding:.56rem 1rem; border-radius:999px;
-  font-weight:700; line-height:1; display:inline-block;
-  border:1px solid transparent;
-  transition:background .2s ease, transform .02s ease;
+  display:inline-block; line-height:1; font-weight:800;
+  color:#fff; background:var(--green);
+  padding:.62rem 1.05rem; border-radius:999px;
+  border:1px solid transparent; transition:transform .02s ease, background .2s ease;
 }
-.menu a:hover{ background:var(--primary-600) }
+.menu a:hover{ background:var(--green-600) }
 .menu a:active{ transform:translateY(1px) }
-.menu a.cta{ background:var(--accent) }
-.menu a.cta:hover{ background:var(--accent-600) }
+.menu a.cta{ background:var(--orange) }
+.menu a.cta:hover{ background:var(--orange-700) }
 
 /* ============ Hero ============ */
 .hero{
-  background:linear-gradient(160deg,var(--hero-start) 0%,var(--hero-end) 100%);
-  padding:3.2rem 0; border-bottom:1px solid #edf0f2;
+  background:linear-gradient(135deg,var(--hero-a) 0%, var(--hero-b) 100%);
+  padding:3.4rem 0; border-bottom:1px solid #eceff2;
 }
 .hero .wrap{
   display:grid; grid-template-columns:1fr 1fr;
   gap:2rem; align-items:center;
 }
 .badge{
-  display:inline-flex; gap:.5rem; align-items:center;
-  background:#fff; border:1px solid #ececec; color:var(--accent);
-  padding:.35rem .6rem; border-radius:999px; font-weight:700; font-size:.9rem;
+  display:inline-flex; align-items:center; gap:.5rem;
+  background:#fff; color:var(--navy);
+  padding:.38rem .7rem; border-radius:999px; font-weight:800; font-size:.9rem;
+  border:1px solid #eef0f2;
 }
 .lead{ color:var(--muted) }
 .actions{ display:flex; gap:.8rem; flex-wrap:wrap }
 .btn{
   display:inline-flex; align-items:center; gap:.5rem;
-  padding:.8rem 1.1rem; border-radius:var(--radius);
-  border:1px solid transparent; background:var(--surface);
-  color:var(--accent); font-weight:700; box-shadow:0 1px 0 rgba(0,0,0,.04);
+  padding:.9rem 1.15rem; border-radius:var(--radius);
+  border:1px solid transparent; background:#fff;
+  color:var(--navy); font-weight:800; box-shadow:0 1px 0 rgba(0,0,0,.04);
 }
-.btn.primary{ background:var(--primary); color:#fff }
-.btn.primary:hover{ background:var(--primary-600) }
-.btn:focus-visible,.menu a:focus-visible{
-  outline:3px solid rgba(109,170,125,.35); outline-offset:2px;
-}
+.btn.primary{ background:var(--green); color:#fff }
+.btn.primary:hover{ background:var(--green-600) }
+.btn:focus-visible,.menu a:focus-visible{ outline:3px solid rgba(46,163,107,.35); outline-offset:2px }
 
-/* ============ Sections ============ */
+/* ============ Sections & Cartes ============ */
 section{ padding:3.2rem 0 }
 .grid-3{ display:grid; grid-template-columns:repeat(3,1fr); gap:1.25rem }
 .grid-2{ display:grid; grid-template-columns:repeat(2,1fr); gap:1.25rem }
+
 .card{
-  background:var(--surface); border:1px solid #eaecef;
-  border-radius:var(--radius); padding:1.1rem; box-shadow:var(--shadow);
+  background:var(--surface);
+  border:1px solid rgba(31,58,95,.08);
+  border-radius:var(--radius);
+  padding:1.15rem;
+  box-shadow:var(--shadow);
+}
+.card h3{
+  color:var(--green);
 }
 ul{ padding-left:1.1rem; margin:.4rem 0 0 }
 ul li{ margin:.35rem 0 }
 
 /* ============ Formulaire ============ */
 form{
-  display:grid; gap:.8rem; width:50%;
+  display:grid; gap:.85rem; width:50%;
 }
 form input,
 form textarea,
 form button{
   width:100%;
-  padding:.85rem; border:1px solid #e5e7eb; border-radius:10px; background:#fff;
+  padding:.9rem; border:1px solid #e5e7eb; border-radius:12px; background:#fff;
 }
-form textarea{
-  height:135px; resize:vertical;
-}
+form textarea{ height:135px; resize:vertical }
+form button.btn.primary{ background:var(--orange); }
+form button.btn.primary:hover{ background:var(--orange-700) }
 
 /* ============ Footer ============ */
 footer{
-  background:var(--accent); color:#eef2f5;
+  background:var(--navy);
+  color:#eaf0f8;
   text-align:center; padding:1.1rem 0;
 }
-footer a{ color:#eef2f5; text-decoration:underline }
+footer a{ color:#eaf0f8; text-decoration:underline }
 
 /* ============ Responsive ============ */
 @media (max-width:1024px){
   .burger{ display:block }
   nav .menu{ display:none }
-  #menu-toggle:checked ~ nav .menu{          /* fonctionne car input est avant nav */
+  #menu-toggle:checked ~ nav .menu{
     display:grid; position:fixed; inset:64px 0 auto 0;
-    background:var(--surface); padding:1rem; gap:.75rem;
-    border-bottom:1px solid #edf0f2; box-shadow:0 6px 16px rgba(0,0,0,.06);
+    background:var(--surface); padding:1rem; gap:.8rem;
+    border-bottom:1px solid #eceff2; box-shadow:0 6px 16px rgba(0,0,0,.08);
   }
   nav .menu a{ width:100%; text-align:center }
   .hero .wrap{ grid-template-columns:1fr }
